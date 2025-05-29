@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 // Use your MongoDB Atlas connection string here (replace with your actual username/password/db name)
-mongoose.connect('', {
+mongoose.connect('mongodb+srv://harsh:1234@cluster0.pgs0axv.mongodb.net/calculator', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

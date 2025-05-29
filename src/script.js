@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { pattern: /π/g, 'replacement': 'Math.PI' },
     { pattern: /×/g, 'replacement': '*' },
     { pattern: /÷/g, 'replacement': '/' },
-    { pattern: /eˣ/g, replacement: 'Math.exp(' } , // Open      
+    { pattern: /eˣ/g, replacement: 'Math.exp(' } ,     
     { pattern: /([0-9a-zA-Z_]+)²/g, replacement: 'Math.pow($1, 2)' }  
   ];
 
@@ -36,18 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const lastChar = currentvalue.slice(-1);
 
 
-// Memory button logic
+
 const memoryAction = button.getAttribute('data-memory');
 if (memoryAction) {
   if (memoryAction === 'save') {
-    // Save current display to memory
+   
     fetch('http://localhost:3000/memory', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ value: display.value })
     });
   } else if (memoryAction === 'recall') {
-    // Recall memory and append it to display
+   
     fetch('http://localhost:3000/memory')
       .then(res => res.json())
       .then(data => {
@@ -55,10 +55,10 @@ if (memoryAction) {
         display.value = currentvalue;
       });
   } else if (memoryAction === 'clear') {
-    // Clear memory
+    
     fetch('http://localhost:3000/memory/clear', { method: 'POST' });
   }
-  return; // Stop further processing
+  return; 
 }
       if (currentvalue === "Error") currentvalue = "";
 
