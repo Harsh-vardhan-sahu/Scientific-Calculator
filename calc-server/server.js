@@ -7,8 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Use your MongoDB Atlas connection string here (replace with your actual username/password/db name)
-mongoose.connect('mongodb+srv://harsh:1234@cluster0.pgs0axv.mongodb.net/calculator', {
+mongoose.connect('', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -18,7 +17,6 @@ mongoose.connect('mongodb+srv://harsh:1234@cluster0.pgs0axv.mongodb.net/calculat
 let memoryDoc;
 
 app.listen(3000, async () => {
-  // Try to find existing memory document, if none, create it
   memoryDoc = await Memory.findOne();
   if (!memoryDoc) {
     memoryDoc = new Memory({ value: "" });
