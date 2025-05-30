@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('', {
+mongoose.connect('mongodb+srv://harsh:1234@cluster0.pgs0axv.mongodb.net/calculator', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
