@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Handle memory buttons
       if (memoryAction) {
+<<<<<<< HEAD
         // Determine which memory slot to use
         let slot = memoryAction.includes('2') ? '2' : '1';
       
@@ -83,6 +84,26 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
       
+=======
+        if (memoryAction === 'save') {
+          fetch('http://localhost:3000/memory', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ value: display.value })
+          });
+        } else if (memoryAction === 'recall') {
+          fetch('http://localhost:3000/memory')
+            .then(res => res.json())
+            .then(data => {
+              currentValue += data.memory;
+              display.value = currentValue;
+            });
+        } else if (memoryAction === 'clear') {
+          fetch('http://localhost:3000/memory/clear', { method: 'POST' });
+        }
+        return;
+      }
+>>>>>>> 083baac8eac9f09b71a7c4679fd6249e365cd2de
 
       // Handle regular buttons
       if (value === 'AC') {

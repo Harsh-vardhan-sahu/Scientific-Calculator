@@ -1,5 +1,27 @@
 {
+<<<<<<< HEAD
   "dependencies": {
     "express": "^5.1.0"
+=======
+
+  "name": "calc-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.2"
+
+  "dependencies": {
+    "express": "^5.1.0"
+
+>>>>>>> 083baac8eac9f09b71a7c4679fd6249e365cd2de
   }
 }
