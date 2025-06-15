@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const replacements = [
     { pattern: /log₂\(/gi, replacement: 'Math.log2(' },
-    { pattern: /log\(/gi, replacement: 'Math.log10(' },// log₂ must come first
+    { pattern: /log\(/gi, replacement: 'Math.log10(' },
     { pattern: /sin\(/g, replacement: 'Math.sin(' },
     { pattern: /cos\(/g, replacement: 'Math.cos(' },
     { pattern: /tan\(/g, replacement: 'Math.tan(' },
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
       expr = expr.replace(pattern, replacement);
     });
 
-    // Add implied multiplication
     expr = expr.replace(/(\d)(Math\.\w+)/g, '$1*$2');
     expr = expr.replace(/(\d)\(/g, '$1*(');
     expr = expr.replace(/\)(\d)/g, ')*$1');
@@ -52,10 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Handle memory buttons
       if (memoryAction) {
-<<<<<<< HEAD
-        // Determine which memory slot to use
         let slot = memoryAction.includes('2') ? '2' : '1';
-      
+
         if (memoryAction.includes('save')) {
           console.log(`Saving to memory slot ${slot}:`, display.value);
           fetch('http://localhost:3000/memory', {
@@ -63,8 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ value: display.value, slot })
           })
-          .then(res => res.json())
-          .then(data => console.log(`Memory slot ${slot} saved:`, data));
+            .then(res => res.json())
+            .then(data => console.log(`Memory slot ${slot} saved:`, data));
         } else if (memoryAction.includes('recall')) {
           console.log(`Recalling memory from slot ${slot}...`);
           fetch(`http://localhost:3000/memory/${slot}`)
@@ -76,36 +73,16 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         } else if (memoryAction.includes('clear')) {
           console.log(`Clearing memory slot ${slot}...`);
-          fetch(`http://localhost:3000/memory/clear/${slot}`, { method: 'POST' })
+          fetch(`http://localhost:3000/memory/clear/${slot}`, {
+            method: 'POST'
+          })
             .then(res => res.json())
             .then(data => console.log(`Memory slot ${slot} cleared.`));
         }
-      
         return;
       }
-      
-=======
-        if (memoryAction === 'save') {
-          fetch('http://localhost:3000/memory', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ value: display.value })
-          });
-        } else if (memoryAction === 'recall') {
-          fetch('http://localhost:3000/memory')
-            .then(res => res.json())
-            .then(data => {
-              currentValue += data.memory;
-              display.value = currentValue;
-            });
-        } else if (memoryAction === 'clear') {
-          fetch('http://localhost:3000/memory/clear', { method: 'POST' });
-        }
-        return;
-      }
->>>>>>> 083baac8eac9f09b71a7c4679fd6249e365cd2de
 
-      // Handle regular buttons
+      // Handle calculator input
       if (value === 'AC') {
         currentValue = "";
       } else if (value === 'DEL') {
@@ -114,9 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const transformed = transformExpression(currentValue);
         console.log("Transformed:", transformed);
         currentValue = evaluateExpression(transformed);
-      }else if (value === 'x²') {
-        currentvalue += '²';  // Append superscript 2
-      }  else if (
+      } else if (value === 'x²') {
+        currentValue += '²'; // Fixed typo here
+      } else if (
         (lastChar === ')' && value === '(') ||
         (/\d/.test(lastChar) && value === '(') ||
         (lastChar === ')' && /\d/.test(value))
